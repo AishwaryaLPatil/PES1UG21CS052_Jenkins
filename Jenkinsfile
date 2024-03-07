@@ -4,17 +4,14 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                // Compile the .cpp file
+                // build 'PES1UG21CS052-1'
                 sh 'g++ -o main/output main/main.cpp'
             }
         }
         stage('Test') {
             steps {
-                // Print output of the compiled C++ program
-                script {
-                    def output = sh(script: './main/output', returnStdout: true).trim()
-                    echo "Output of the C++ program: ${output}"
-                }
+                // Run the compiled C++ program
+                sh './main/output'
             }
         }
         stage('Deploy') {
