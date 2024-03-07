@@ -10,8 +10,8 @@ pipeline {
         }
         stage('Test') {
             steps {
-                // Run the compiled C++ program
-                sh './output'
+                // Intentional error - using a non-existing file
+                sh './non_existing_file'
             }
         }
         stage('Deploy') {
