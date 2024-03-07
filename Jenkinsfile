@@ -4,19 +4,29 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                // Build 'PES1UG21CS052-1'
-                sh 'g++ -o main/output main/main.cpp'
+                script {
+                    // Build 'PES1UG21CS052-1'
+                    sh 'g++ -o main/output main/main.cpp'
+                }
             }
         }
+
         stage('Test') {
             steps {
-                sh 'chmod +x main/output'
-                sh './main/output'
+                script {
+                    // Add execution permission and run the compiled C++ program
+                    sh 'chmod +x main/output'
+                    sh './main/output'
+                }
             }
         }
+
         stage('Deploy') {
             steps {
-                echo 'deploy'
+                script {
+                    echo 'deploy'
+                    // Add deployment steps if needed
+                }
             }
         }
     }
