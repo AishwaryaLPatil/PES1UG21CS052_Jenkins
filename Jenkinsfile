@@ -4,13 +4,14 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                // build 'PES1UG21CS052-1'
-                sh 'g++ -o output main.cpp'
+                // Build 'PES1UG21CS052-1'
+                sh 'g++ -o main/output main/main.cpp'
             }
         }
         stage('Test') {
             steps {
-                sh './out'
+                sh 'chmod +x main/output'
+                sh './main/output'
             }
         }
         stage('Deploy') {
@@ -21,9 +22,9 @@ pipeline {
     }
 
     post {
-
         failure {
             echo 'Pipeline failed.'
         }
     }
 }
+
